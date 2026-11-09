@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>ТКП {{ model_name }} — {{ doc_num }}</title>
+<style>
+{% include "tkp_css.html" %}
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+<section class="page">
+<header class="doc-head">
+<div class="brand">
+<svg class="logo-svg" viewBox="0 0 126 63" xmlns="http://www.w3.org/2000/svg"><path fill="#1e3a5f" fill-rule="evenodd" d="M55.02 62.09V35.51L27.7 7.45 0 35.14v26.49l24.19-23.95 22.92 24.4h2.87L25.68 36.2l2.01-1.99zM106.82 62.06l18.7-18.61h-2.97l-18.7 18.61zM81.97 43.42V2.05L84.07 0v43.42l33.56.09-19.04 18.55-39.17.03.5-39.16L78.89 4.44l-.3 38.97z"/></svg>
+<div class="brand-text"><div class="brand-name">АЛЬТЕГРИТИ</div><small>лазерные технологии</small></div>
+</div>
+<div class="doc-meta">
+<div class="doc-title">Коммерческое предложение</div>
+<div class="doc-num">№ {{ doc_num }} от {{ doc_date }}</div>
+</div>
+</header>
+<div class="parties">
+<div class="party">
+<h4>Клиент</h4>
+<div class="p-name">{{ client_company or "ООО «Клиент»" }}</div>
+<div class="p-row">{{ client_contact or "" }}</div>
+<div class="p-row">{{ client_phone or "" }}</div>
+</div>
+<div class="party">
+<h4>Менеджер</h4>
+<div class="p-name">{{ manager_name or "Менеджер" }}</div>
+<div class="p-row">{{ manager_position or "" }}</div>
+<div class="p-row">{{ manager_email or "" }}</div>
+</div>
+</div>
+<div class="product">
+<h1>{{ model_full }}</h1>
+<div class="sub">Оптоволоконный лазерный станок резки листового металла</div>
+{% if model_image %}
+<div class="hero-img"><img src="https://altegrity.bitrix24.ru{{ model_image }}" style="max-height:100%;max-width:100%;object-fit:contain;border-radius:8px;"></div>
+{% else %}
+<div class="hero">{{ model_name }}</div>
+{% endif %}
+</div>
+
+<h2 class="sec"><span class="n">1</span>Почему «Альтегрити»</h2>
+<div class="why-lead">5 причин выбрать нас</div>
+<div class="why-grid">
+<div class="why-card"><div class="why-num">01</div><h3>Видео резки и гибки</h3><p>Мы снимаем видео процесса резки и гибки на наших станках — вы видите результат до покупки.</p></div>
+<div class="why-card"><div class="why-num">02</div><h3>Один поставщик</h3><p>Полный цикл: станок, оснастка, ПО, пусконаладка, обучение, сервис и ЗИП — всё от одного поставщика.</p></div>
+<div class="why-card"><div class="why-num">03</div><h3>Поставка под заказ</h3><p>Любая комплектация под ваши задачи: мощность, стол, автоматизация, ПО — всё обсуждаемо.</p></div>
+<div class="why-card"><div class="why-num">04</div><h3>Сервисный центр</h3><p>Собственный склад расходников и ЗИП в Москве. Выезд инженера в течение 24 часов. Ремонт источников и лазерных головок в РФ.</p></div>
+<div class="why-card why-prem">
+<div class="why-num">05</div><h3>Предприёмка на заводе</h3>
+<p>Обязательный этап каждой поставки:</p>
+<div class="prem-mini"><b>1.</b> Протокол вместе с вами — параметры, комплектация и тестовые детали согласуем до отгрузки.</div>
+<div class="prem-mini"><b>2.</b> Проверка на заводе — наш инженер проходит все пункты протокола.</div>
+<div class="prem-mini"><b>3.</b> Видеоотчёт — присылаем видео по каждому пункту, по желанию — видеосвязь.</div>
+</div>
+</div>
+
+<div class="footer"><span>Альтегрити · Москва</span><span>КП {{ doc_num }} · стр. 1</span></div>
+</section>
+
+<!-- ================= PAGE 2: Технические характеристики ================= -->
+<section class="page">
+<header class="doc-head">
+<div class="brand">
+<svg class="logo-svg" viewBox="0 0 126 63" xmlns="http://www.w3.org/2000/svg"><path fill="#1e3a5f" fill-rule="evenodd" d="M55.02 62.09V35.51L27.7 7.45 0 35.14v26.49l24.19-23.95 22.92 24.4h2.87L25.68 36.2l2.01-1.99zM106.82 62.06l18.7-18.61h-2.97l-18.7 18.61zM81.97 43.42V2.05L84.07 0v43.42l33.56.09-19.04 18.55-39.17.03.5-39.16L78.89 4.44l-.3 38.97z"/></svg>
+<div class="brand-text"><div class="brand-name">АЛЬТЕГРИТИ</div><small>лазерные технологии</small></div>
+</div>
+<div class="doc-meta">
+<div class="doc-title">Коммерческое предложение</div>
+<div class="doc-num">№ {{ doc_num }} · стр. 2</div>
+</div>
+</header>
+
+<h2 class="sec"><span class="n">2</span>Технические характеристики</h2>
+
+<table class="spec-table">
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td>Модель</td><td><b>{{ model_name }}</b></td></tr>
+<tr><td>Мощность лазера</td><td>{{ power_kw }} кВт</td></tr>
+<tr><td>Источник лазера</td><td>{{ source }}</td></tr>
+<tr><td>Рабочая зона (стол)</td><td>По выбору: 3015 / 4020 / 6020 / 6025</td></tr>
+<tr><td>Тип лазера</td><td>Волоконный (fiber)</td></tr>
+<tr><td>Длина волны</td><td>1070 нм</td></tr>
+<tr><td>Скорость резки</td><td>До 120 м/мин (зависит от материала и толщины)</td></tr>
+<tr><td>Точность позиционирования</td><td>±0,03 мм</td></tr>
+<tr><td>Повторяемость</td><td>±0,02 мм</td></tr>
+<tr><td>Макс. скорость позиционирования</td><td>200 м/мин</td></tr>
+<tr><td>Ускорение</td><td>2,8 G</td></tr>
+<tr><td>Система ЧПУ</td><td>Bochu / Lantek (в зависимости от модели)</td></tr>
+<tr><td>Программное обеспечение</td><td>SmartManager / Lantek (в зависимости от модели)</td></tr>
+<tr><td>Охлаждение</td><td>Водяное, чиллер в комплекте</td></tr>
+<tr><td>Электропитание</td><td>380 В, 50 Гц, 3 фазы</td></tr>
+</table>
+
+<h2 class="sec" style="margin-top:6mm"><span class="n">3</span>Режимы резки</h2>
+<table class="spec-table">
+<tr><th>Материал</th><th>Макс. толщина</th></tr>
+<tr><td>Углеродистая сталь</td><td>До 40 мм (при 20 кВт)</td></tr>
+<tr><td>Нержавеющая сталь</td><td>До 30 мм</td></tr>
+<tr><td>Алюминий</td><td>До 25 мм</td></tr>
+<tr><td>Латунь / медь</td><td>До 15 мм</td></tr>
+</table>
+
+<div class="footer"><span>Альтегрити · Москва</span><span>КП {{ doc_num }} · стр. 2</span></div>
+</section>
+
+<!-- ================= PAGE 3: Функции оборудования ================= -->
+<section class="page">
+<header class="doc-head">
+<div class="brand">
+<svg class="logo-svg" viewBox="0 0 126 63" xmlns="http://www.w3.org/2000/svg"><path fill="#1e3a5f" fill-rule="evenodd" d="M55.02 62.09V35.51L27.7 7.45 0 35.14v26.49l24.19-23.95 22.92 24.4h2.87L25.68 36.2l2.01-1.99zM106.82 62.06l18.7-18.61h-2.97l-18.7 18.61zM81.97 43.42V2.05L84.07 0v43.42l33.56.09-19.04 18.55-39.17.03.5-39.16L78.89 4.44l-.3 38.97z"/></svg>
+<div class="brand-text"><div class="brand-name">АЛЬТЕГРИТИ</div><small>лазерные технологии</small></div>
+</div>
+<div class="doc-meta">
+<div class="doc-title">Коммерческое предложение</div>
+<div class="doc-num">№ {{ doc_num }} · стр. 3</div>
+</div>
+</header>
+
+<h2 class="sec"><span class="n">4</span>Функции оборудования</h2>
+
+{% for category, functions in functions_by_category.items() %}
+<h3 style="font-size:11pt;color:#1e3a5f;margin:5mm 0 3mm;font-weight:700">{{ category }}</h3>
+<div class="func-grid">
+{% for fn in functions %}
+<div class="func-item">
+<div class="func-icon">✓</div>
+<div>
+<h4>{{ fn.name }}</h4>
+<p>{{ fn.description }}</p>
+</div>
+</div>
+{% endfor %}
+</div>
+{% endfor %}
+
+<div class="footer"><span>Альтегрити · Москва</span><span>КП {{ doc_num }} · стр. 3</span></div>
+</section>
+
+<!-- ================= PAGE 4: Комплектация ================= -->
+<section class="page">
+<header class="doc-head">
+<div class="brand">
+<svg class="logo-svg" viewBox="0 0 126 63" xmlns="http://www.w3.org/2000/svg"><path fill="#1e3a5f" fill-rule="evenodd" d="M55.02 62.09V35.51L27.7 7.45 0 35.14v26.49l24.19-23.95 22.92 24.4h2.87L25.68 36.2l2.01-1.99zM106.82 62.06l18.7-18.61h-2.97l-18.7 18.61zM81.97 43.42V2.05L84.07 0v43.42l33.56.09-19.04 18.55-39.17.03.5-39.16L78.89 4.44l-.3 38.97z"/></svg>
+<div class="brand-text"><div class="brand-name">АЛЬТЕГРИТИ</div><small>лазерные технологии</small></div>
+</div>
+<div class="doc-meta">
+<div class="doc-title">Коммерческое предложение</div>
+<div class="doc-num">№ {{ doc_num }} · стр. 4</div>
+</div>
+</header>
+
+<h2 class="sec"><span class="n">5</span>Комплектация</h2>
+
+<div class="compact">
+<p><b>Базовая комплектация включает:</b></p>
+<ul>
+<li>Лазерный станок с выбранной мощностью и размером стола</li>
+<li>Лазерный источник (Raycus / GW Laser / IPG — по выбору)</li>
+<li>Лазерная режущая головка с автоматическим отслеживанием высоты</li>
+<li>Система ЧПУ и ПО для управления станком</li>
+<li>Чиллер для охлаждения лазерного источника</li>
+<li>Система пылеудаления (ФВУ)</li>
+<li>Винтовой компрессор</li>
+<li>Стабилизатор напряжения</li>
+<li>Библиотека режимов резки (200+ предустановленных программ)</li>
+</ul>
+
+<p><b>Дополнительно включено:</b></p>
+<ul>
+<li>Монтаж, пусконаладка, тестирование и инструктаж операторов</li>
+<li>Упаковка и доставка до объекта клиента</li>
+<li>ЗИП-комплект для первого года эксплуатации</li>
+</ul>
+
+{% if options %}
+<p><b>Выбранные опции:</b></p>
+<ul>
+{% for o in options %}
+<li>{{ o.name }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+</div>
+
+<div class="footer"><span>Альтегрити · Москва</span><span>КП {{ doc_num }} · стр. 4</span></div>
+</section>
+
+<!-- ================= PAGE 5: Сроки поставки ================= -->
+<section class="page">
+<header class="doc-head">
+<div class="brand">
+<svg class="logo-svg" viewBox="0 0 126 63" xmlns="http://www.w3.org/2000/svg"><path fill="#1e3a5f" fill-rule="evenodd" d="M55.02 62.09V35.51L27.7 7.45 0 35.14v26.49l24.19-23.95 22.92 24.4h2.87L25.68 36.2l2.01-1.99zM106.82 62.06l18.7-18.61h-2.97l-18.7 18.61zM81.97 43.42V2.05L84.07 0v43.42l33.56.09-19.04 18.55-39.17.03.5-39.16L78.89 4.44l-.3 38.97z"/></svg>
+<div class="brand-text"><div class="brand-name">АЛЬТЕГРИТИ</div><small>лазерные технологии</small></div>
+</div>
+<div class="doc-meta">
+<div class="doc-title">Коммерческое предложение</div>
+<div class="doc-num">№ {{ doc_num }} · стр. 5</div>
+</div>
+</header>
+
+<h2 class="sec"><span class="n">6</span>Сроки и этапы поставки</h2>
+
+<div class="tl">
+<div class="tl-row">
+<div class="tl-dot"></div>
+<div class="tl-content">
+<h4>Подписание договора и аванс</h4>
+<p>Предоплата 30%. Запуск станка в производство.</p>
+</div>
+</div>
+<div class="tl-line"></div>
+<div class="tl-row">
+<div class="tl-dot"></div>
+<div class="tl-content">
+<h4>Производство станка</h4>
+<p>45–60 дней (зависит от комплектации и загрузки завода).</p>
+</div>
+</div>
+<div class="tl-line"></div>
+<div class="tl-row">
+<div class="tl-dot"></div>
+<div class="tl-content">
+<h4>Предприёмка на заводе</h4>
+<p>Проверка по протоколу, видеоотчёт, по желанию — видеосвязь.</p>
+</div>
+</div>
+<div class="tl-line"></div>
+<div class="tl-row">
+<div class="tl-dot"></div>
+<div class="tl-content">
+<h4>Отгрузка и доставка</h4>
+<p>Морем / ж/д / авто. Таможенное оформление.</p>
+</div>
+</div>
+<div class="tl-line"></div>
+<div class="tl-row">
+<div class="tl-dot"></div>
+<div class="tl-content">
+<h4>Монтаж и пусконаладка</h4>
+<p>Наш инженер выполняет монтаж, настройку, обучение операторов.</p>
+</div>
+</div>
+</div>
+
+<div class="tl-end">Итого: 3–4 месяца с момента аванса</div>
+
+<h2 class="sec" style="margin-top:8mm"><span class="n">7</span>Условия оплаты</h2>
+<div class="compact">
+<ul>
+<li>30% — предоплата при заказе</li>
+<li>60% — перед отгрузкой</li>
+<li>10% — после пусконаладки</li>
+</ul>
+<p>Другие условия обсуждаются индивидуально.</p>
+</div>
+
+<div class="footer"><span>Альтегрити · Москва</span><span>КП {{ doc_num }} · стр. 5</span></div>
+</section>
+
+<!-- ================= PAGE 6: Стоимость ================= -->
+<section class="page">
+<header class="doc-head">
+<div class="brand">
+<svg class="logo-svg" viewBox="0 0 126 63" xmlns="http://www.w3.org/2000/svg"><path fill="#1e3a5f" fill-rule="evenodd" d="M55.02 62.09V35.51L27.7 7.45 0 35.14v26.49l24.19-23.95 22.92 24.4h2.87L25.68 36.2l2.01-1.99zM106.82 62.06l18.7-18.61h-2.97l-18.7 18.61zM81.97 43.42V2.05L84.07 0v43.42l33.56.09-19.04 18.55-39.17.03.5-39.16L78.89 4.44l-.3 38.97z"/></svg>
+<div class="brand-text"><div class="brand-name">АЛЬТЕГРИТИ</div><small>лазерные технологии</small></div>
+</div>
+<div class="doc-meta">
+<div class="doc-title">Коммерческое предложение</div>
+<div class="doc-num">№ {{ doc_num }} · стр. 6</div>
+</div>
+</header>
+
+<h2 class="sec" style="margin-top:3mm"><span class="n">7</span>Стоимость</h2>
+
+<table class="cost-table">
+<tr class="group"><td colspan="3">Базовая модель</td></tr>
+<tr><td>{{ model_name }} {{ power_kw }} кВт {{ source }} — базовая комплектация</td><td class="on">✓</td><td class="r mute">включено</td></tr>
+<tr class="group"><td colspan="3">Услуги</td></tr>
+<tr><td>Монтаж оборудования, ПНР, тестирование и инструктаж операторов</td><td class="on">✓</td><td class="r mute">включено</td></tr>
+<tr><td>Упаковка и доставка</td><td class="on">✓</td><td class="r mute">включено</td></tr>
+{% if options %}
+<tr class="group"><td colspan="3">Опции и дополнительное оборудование</td></tr>
+{% for o in options %}
+<tr><td>{{ o.name }}</td><td class="on">✓</td><td class="r mute">включено</td></tr>
+{% endfor %}
+{% endif %}
+<tr><td>ЗИП-комплект</td><td class="on">✓</td><td class="r mute">включено</td></tr>
+</table>
+
+<div class="total-box">
+<div class="row grand"><span>Итого без НДС</span><span>{{ "{:,.0f}".format(total_without_vat).replace(",", " ") }} ₽</span></div>
+<div class="row grand"><span>Итого с НДС (22%)</span><span>{{ "{:,.0f}".format(total_with_vat).replace(",", " ") }} ₽</span></div>
+<div class="row nds"><span>в том числе НДС</span><span>{{ "{:,.0f}".format(vat_amount).replace(",", " ") }} ₽</span></div>
+</div>
+
+<div class="footer"><span>Альтегрити · Москва</span><span>КП {{ doc_num }} · стр. 6</span></div>
+</section>
+
+<!-- ================= PAGE 7: Условия поставки ================= -->
+<section class="page">
+<header class="doc-head">
+<div class="brand">
+<svg class="logo-svg" viewBox="0 0 126 63" xmlns="http://www.w3.org/2000/svg"><path fill="#1e3a5f" fill-rule="evenodd" d="M55.02 62.09V35.51L27.7 7.45 0 35.14v26.49l24.19-23.95 22.92 24.4h2.87L25.68 36.2l2.01-1.99zM106.82 62.06l18.7-18.61h-2.97l-18.7 18.61zM81.97 43.42V2.05L84.07 0v43.42l33.56.09-19.04 18.55-39.17.03.5-39.16L78.89 4.44l-.3 38.97z"/></svg>
+<div class="brand-text"><div class="brand-name">АЛЬТЕГРИТИ</div><small>лазерные технологии</small></div>
+</div>
+<div class="doc-meta">
+<div class="doc-title">Коммерческое предложение</div>
+<div class="doc-num">№ {{ doc_num }} · стр. 7</div>
+</div>
+</header>
+
+<h2 class="sec"><span class="n">8</span>Гарантия и сервис</h2>
+<div class="compact">
+<ul>
+<li><b>Станок:</b> 24 месяца с момента пусконаладки</li>
+<li><b>Лазерный источник:</b> 20 месяцев</li>
+<li><b>Вспомогательное оборудование:</b> 12 месяцев</li>
+</ul>
+<p><b>Сервисная поддержка:</b></p>
+<ul>
+<li>Собственный склад ЗИП и расходников в Москве</li>
+<li>Выезд инженера в течение 24 часов</li>
+<li>Ремонт лазерных источников и головок в РФ</li>
+<li>Техническая консультация по телефону и удалённый доступ</li>
+</ul>
+</div>
+
+<h2 class="sec" style="margin-top:6mm"><span class="n">9</span>Контакты</h2>
+<div class="compact">
+<p><b>ООО «Альтегрити»</b></p>
+<p>Москва, ул. Производственная, д. 10</p>
+<p>Тел.: +7 (495) 123-45-67</p>
+<p>Email: info@altegrity.ru</p>
+<p>Сайт: www.altegrity.ru</p>
+</div>
+
+<div style="margin-top:10mm;text-align:center">
+<p style="font-size:9pt;color:#6b7b8e">Коммерческое предложение действительно в течение 30 дней с даты выпуска.</p>
+</div>
+
+<div class="footer"><span>Альтегрити · Москва</span><span>КП {{ doc_num }} · стр. 7</span></div>
+</section>
+
+</body>
+</html>
