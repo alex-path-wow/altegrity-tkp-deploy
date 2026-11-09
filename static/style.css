@@ -1,0 +1,31 @@
+:root{--primary:#1e3a5f;--primary-light:#3d6a9e;--bg:#f4f7fb;--card:#fff;--text:#1a1a2e;--muted:#6b7b8e;--border:#dbe4ee;--success:#2e8b57}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.4}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+header{background:var(--primary);color:#fff;padding:16px 0;margin-bottom:24px}
+header .container{display:flex;align-items:center;gap:12px}
+header h1{font-size:18px;font-weight:700;letter-spacing:1px}
+header p{font-size:12px;opacity:.8}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px}
+.card h2{font-size:14px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-group{flex:1}
+.form-group.full{grid-column:span 2}
+.form-group label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.form-group input,.form-group select{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;background:#fff}
+.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt-section h4{font-size:12px;font-weight:700;color:var(--primary);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.opt-item{display:flex;align-items:flex-start;gap:8px;padding:6px 8px;border-radius:5px;cursor:pointer}
+.opt-item:hover{background:#f0f4f8}
+.opt-item input[type=checkbox]{margin-top:2px;width:16px;height:16px;accent-color:var(--primary)}
+.opt-name{font-size:12px;font-weight:600}
+.opt-desc{font-size:11px;color:var(--muted)}
+.btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+.btn{padding:10px 24px;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-secondary{background:var(--border);color:var(--text)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+#result{margin-top:16px;padding:16px;background:#e8f5e9;border:1px solid #c8e6c9;border-radius:8px;display:none}
+#result.show{display:block}
+.loading{display:none;text-align:center;padding:20px;color:var(--muted)}
+.loading.show{display:block}
