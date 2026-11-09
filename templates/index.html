@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Генератор ТКП — Альтегрити</title>
+<style>
+:root{--primary:#1e3a5f;--primary-light:#3d6a9e;--bg:#f4f7fb;--card:#fff;--text:#1a1a2e;--muted:#6b7b8e;--border:#dbe4ee;--success:#2e8b57}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.4}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+header{background:var(--primary);color:#fff;padding:16px 0;margin-bottom:24px}
+header .container{display:flex;align-items:center;gap:12px}
+header svg{height:36px;width:auto}
+header h1{font-size:18px;font-weight:700;letter-spacing:1px}
+header p{font-size:12px;opacity:.8}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px}
+.card h2{font-size:14px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card h2 .num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:var(--primary);color:#fff;font-size:11px;border-radius:5px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-group{flex:1}
+.form-group.full{grid-column:span 2}
+.form-group label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.form-group input,.form-group select{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;background:#fff;transition:border .2s}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--primary-light)}
+.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt-section h4{font-size:12px;font-weight:700;color:var(--primary);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.opt-item{display:flex;align-items:flex-start;gap:8px;padding:6px 8px;border-radius:5px;cursor:pointer;transition:background .15s}
+.opt-item:hover{background:#f0f4f8}
+.opt-item input[type=checkbox]{margin-top:2px;width:16px;height:16px;accent-color:var(--primary)}
+.opt-item .opt-name{font-size:12px;font-weight:600}
+.opt-item .opt-desc{font-size:11px;color:var(--muted)}
+.opt-item .opt-price{font-size:11px;color:var(--primary-light);font-weight:600;margin-left:auto;white-space:nowrap}
+.btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+.btn{padding:10px 24px;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .2s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{opacity:.9}
+.btn-secondary{background:var(--border);color:var(--text)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+#result{margin-top:16px;padding:16px;background:#e8f5e9;border:1px solid #c8e6c9;border-radius:8px;display:none}
+#result.show{display:block}
+#result a{color:var(--success);font-weight:700;text-decoration:none}
+#result a:hover{text-decoration:underline}
+.loading{display:none;text-align:center;padding:20px;color:var(--muted)}
+.loading.show{display:block}
+</style>
+</head>
+<body>
+
+<header>
+<div class="container">
+<svg viewBox="0 0 126 63" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-rule="evenodd" d="M55.02 62.09V35.51L27.7 7.45 0 35.14v26.49l24.19-23.95 22.92 24.4h2.87L25.68 36.2l2.01-1.99zM106.82 62.06l18.7-18.61h-2.97l-18.7 18.61zM81.97 43.42V2.05L84.07 0v43.42l33.56.09-19.04 18.55-39.17.03.5-39.16L78.89 4.44l-.3 38.97z"/></svg>
+<div><h1>ГЕНЕРАТОР ТКП</h1><p>Альтегрити — лазерные технологии</p></div>
+</div>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2><span class="num">1</span>Данные клиента</h2>
+<div class="form-row">
+<div class="form-group full"><label>Компания</label><input type="text" id="client_company" placeholder="Автозаполнение из Битрикс24..."></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label>Контактное лицо</label><input type="text" id="client_contact" placeholder="Имя Фамилия"></div>
+<div class="form-group"><label>Телефон</label><input type="text" id="client_phone" placeholder="+7..."></div>
+</div>
+</div>
+
+<div class="card">
+<h2><span class="num">2</span>Оборудование</h2>
+<div class="form-row">
+<div class="form-group"><label>Модель станка</label><select id="model_id"><option value="">Загрузка...</option></select></div>
+<div class="form-group"><label>Мощность лазера, кВт</label><select id="power_kw"><option>3</option><option>6</option><option>12</option><option selected>20</option><option>30</option><option>40</option></select></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label>Источник лазера</label><select id="source"><option>Raycus</option><option>GW Laser</option><option>IPG</option></select></div>
+<div class="form-group"><label>Размер стола</label><select id="table_size"><option>3015 (3000×1500 мм)</option><option>4020 (4000×2000 мм)</option><option>6020 (6000×2000 мм)</option><option>6025 (6000×2500 мм)</option></select></div>
+</div>
+</div>
+
+<div class="card">
+<h2><span class="num">3</span>Опции</h2>
+<div class="options-grid" id="options_container">
+<div class="loading show">Загрузка опций...</div>
+</div>
+</div>
+
+<div class="card">
+<h2><span class="num">4</span>Менеджер</h2>
+<div class="form-row">
+<div class="form-group"><label>ФИО</label><input type="text" id="manager_name" placeholder="Автозаполнение..."></div>
+<div class="form-group"><label>Должность</label><input type="text" id="manager_position" placeholder="Менеджер по продажам"></div>
+</div>
+<div class="form-row">
+<div class="form-group full"><label>Email</label><input type="email" id="manager_email" placeholder="manager@altegrity.ru"></div>
+</div>
+</div>
+
+<div class="card">
+<h2><span class="num">5</span>Итоговая стоимость</h2>
+<div class="form-row">
+<div class="form-group full"><label>Сумма из КП (с НДС 22%)</label><input type="number" id="total_price" placeholder="Берётся из поля «Сумма» предложения..." step="0.01"></div>
+</div>
+<div class="btn-row">
+<button class="btn btn-secondary" onclick="previewHTML()">Предпросмотр HTML</button>
+<button class="btn btn-primary" onclick="generatePDF()" id="btn_pdf">Скачать PDF</button>
+</div>
+<div class="loading" id="loading">Генерация PDF...</div>
+<div id="result"></div>
+</div>
+
+</div>
+
+<script src="static/app.js"></script>
+</body>
+</html>
